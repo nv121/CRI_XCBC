@@ -19,3 +19,14 @@
 - name: Build the updated Apache config
   command: /opt/ood/ood-portal-generator/sbin/update_ood_portal
   ignore_errors: yes
+
+- name: Creates directory to clone the flask_user_reg app
+  file:
+   path: /var/www/ood/register/flask_user_reg/
+   state: directory
+
+- name: Clone the default flask_user_reg app
+  git:
+   repo: https://gitlab.rc.uab.edu/mmoo97/flask_user_reg.git
+   version: custom_environment
+   dest: /var/www/ood/register/flask_user_reg
